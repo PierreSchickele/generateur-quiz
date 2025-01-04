@@ -1,4 +1,17 @@
+import os
+import logging
+import subprocess
+
 import streamlit as st
+
+if "data" not in os.listdir():
+    print("creating folder data")
+    logging.error(os.listdir())
+    logging.error("creating folder data")
+    os.mkdir("data")
+
+if "questions.duckdb" not in os.listdir("data"):
+    subprocess.run(["python", "init_db.py"])
 
 question = "En SQL, quel mot-clé permet d'obtenir de la donnée ?"
 answers = ["SELECT", "GET", "RETRIEVE", "OBTAIN"]
